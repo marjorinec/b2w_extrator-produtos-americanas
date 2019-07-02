@@ -18,7 +18,10 @@ function pegaProduto(urlProduto) {
 
 		process.stdout.write(jsonDadosProduto)
 		return jsonDadosProduto
-	})
+	}).catch( function (error) {
+			process.stdout.write("Erro - " + error)
+		}
+	)
 }
 
 function extraiId($) {
