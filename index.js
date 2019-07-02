@@ -1,22 +1,25 @@
 const axios = require('axios')
 const cheerio = require('cheerio')
 
-axios.get("https://www.americanas.com.br/produto/134255922/smart-tv-led-40-android-tcl-40s6500-full-hd-com-conversor-digital-wi-fi-bluetooth-1-usb-2-hdmi-controle-remoto-com-comando-de-voz-google-assistant?chave=prf_hm_0_oh_1_txar_00&hl=lower&pfm_carac=1&pfm_index=0&pfm_page=home&pfm_pos=maintop4&pfm_type=vit_spacey").then(function (response) {
-	const $ = cheerio.load(response.data)
-	
-	const dadosProduto = {
-		id: extraiId($),
-		breadcrumb: extraiBreadcrumbs($),
-		name: extraiNome($),
-		img: extraiImagem($),
-		seller: extraiVendedor($),
-		price: extraiPreco($)
-	}
+function pegaProduto() {
+	axios.get("https://www.americanas.com.br/produto/134255922/smart-tv-led-40-android-tcl-40s6500-full-hd-com-conversor-digital-wi-fi-bluetooth-1-usb-2-hdmi-controle-remoto-com-comando-de-voz-google-assistant?chave=prf_hm_0_oh_1_txar_00&hl=lower&pfm_carac=1&pfm_index=0&pfm_page=home&pfm_pos=maintop4&pfm_type=vit_spacey").then(function (response) {
+		const $ = cheerio.load(response.data)
 
-	const jsonDadosProduto = JSON.stringify(dadosProduto)
+		const dadosProduto = {
+			id: extraiId($),
+			breadcrumb: extraiBreadcrumbs($),
+			name: extraiNome($),
+			img: extraiImagem($),
+			seller: extraiVendedor($),
+			price: extraiPreco($)
+		}
 
-	console.log(jsonDadosProduto)
-})
+		const jsonDadosProduto = JSON.stringify(dadosProduto)
+
+		console.log(jsonDadosProduto)
+		return jsonDadosProduto
+	})
+}
 
 function extraiId($) {
 	const elementoId = $('#content section section span').first().text()
