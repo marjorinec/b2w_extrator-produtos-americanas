@@ -1,7 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 
-axios.get("https://www.americanas.com.br/produto/132248681/iphone-7-32gb-preto-matte-desbloqueado-ios-10-wi-fi-4g-camera-12mp-apple?DCSext.recom=RR_item_page.rr1-ClickCP&nm_origem=rec_item_page.rr1-ClickCP&nm_ranking_rec=2").then(function (response) {
+axios.get("https://www.americanas.com.br/produto/134255922/smart-tv-led-40-android-tcl-40s6500-full-hd-com-conversor-digital-wi-fi-bluetooth-1-usb-2-hdmi-controle-remoto-com-comando-de-voz-google-assistant?chave=prf_hm_0_oh_1_txar_00&hl=lower&pfm_carac=1&pfm_index=0&pfm_page=home&pfm_pos=maintop4&pfm_type=vit_spacey").then(function (response) {
 	const $ = cheerio.load(response.data)
 	
 	const dadosProduto = {
@@ -9,7 +9,8 @@ axios.get("https://www.americanas.com.br/produto/132248681/iphone-7-32gb-preto-m
 		breadcrumbs: extraiBreadcrumbs($),
 		nome: extraiNome($),
 		imagem: extraiImagem($),
-		vendedor: extraiVendedor($)
+		vendedor: extraiVendedor($),
+		preco: extraiPreco($)
 	}
 
 	console.log(dadosProduto)
@@ -44,4 +45,12 @@ function extraiImagem($) {
 
 function extraiVendedor($) {
 	return $('.seller-name-container span').first().text();
+}
+
+function extraiPreco($) {
+	let preco = $('section').first().find('.sales-price').text();
+	preco = preco.replace("R$ ", "").replace(".", "").replace(",", ".");
+	preco = parseFloat(preco);
+
+	return preco
 }
