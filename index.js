@@ -6,11 +6,11 @@ axios.get("https://www.americanas.com.br/produto/134255922/smart-tv-led-40-andro
 	
 	const dadosProduto = {
 		id: extraiId($),
-		breadcrumbs: extraiBreadcrumbs($),
-		nome: extraiNome($),
-		imagem: extraiImagem($),
-		vendedor: extraiVendedor($),
-		preco: extraiPreco($)
+		breadcrumb: extraiBreadcrumbs($),
+		name: extraiNome($),
+		img: extraiImagem($),
+		seller: extraiVendedor($),
+		price: extraiPreco($)
 	}
 
 	console.log(dadosProduto)
