@@ -16,7 +16,7 @@ function pegaProduto() {
 
 		const jsonDadosProduto = JSON.stringify(dadosProduto)
 
-		console.log(jsonDadosProduto)
+		process.stdout.write(jsonDadosProduto)
 		return jsonDadosProduto
 	})
 }
