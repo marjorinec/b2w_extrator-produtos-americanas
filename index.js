@@ -6,7 +6,8 @@ axios.get("https://www.americanas.com.br/produto/132248681/iphone-7-32gb-preto-m
 	
 	const dadosProduto = {
 		id: extraiId($),
-		breadcrumbs: extraiBreadcrumbs($)
+		breadcrumbs: extraiBreadcrumbs($),
+		nome: extraiNome($)
 	}
 
 	console.log(dadosProduto)
@@ -31,3 +32,6 @@ function extraiBreadcrumbs($) {
 	return breadcrumbs
 }
 
+function extraiNome($) {
+	return $('h1').text();
+}
