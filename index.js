@@ -59,3 +59,5 @@ function extraiPreco($) {
 
 	return preco
 }
+
+module.exports = pegaProduto
